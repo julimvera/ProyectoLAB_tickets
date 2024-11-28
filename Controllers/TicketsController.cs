@@ -151,7 +151,6 @@ namespace WebApp_Tickets.Controllers
         }
 
 
-
         [Authorize]
         // GET: Tickets/Edit/5
         public async Task<IActionResult> Edit(int? id)

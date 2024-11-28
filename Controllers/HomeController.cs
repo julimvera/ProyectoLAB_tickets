@@ -30,14 +30,13 @@ namespace WebApp_Tickets.Controllers
                 .Include(t => t.Estado) 
                 .Include(t => t.TicketDetalles) 
                 .Where(t => t.EstadoId == 1); 
-
             
             if (!string.IsNullOrEmpty(apellido))
             {
                 ticketsQuery = ticketsQuery.Where(t => t.Afiliado != null && t.Afiliado.Apellido.Contains(apellido));
             }
 
-            if (!string.IsNullOrEmpty(nombre))
+            if (!string.IsNullOrEmpty(nombre))   
             {
                 ticketsQuery = ticketsQuery.Where(t => t.Afiliado != null && t.Afiliado.Nombres.Contains(nombre));
             }
