@@ -1,0 +1,152 @@
+﻿@model IEnumerable<WebApp_Tickets.Models.Afiliado>
+
+
+
+
+@* mensaje toast de exito *@
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="toast-container position-fixed top-0 end-0 p-3" style="z-index: 1050;">
+        <div class="toast align-items-center text-white bg-success border-0" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="d-flex">
+                <div class="toast-body">
+                    @TempData["SuccessMessage"]
+                </div>
+                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            var toastElement = document.querySelector('.toast');
+            var toast = new bootstrap.Toast(toastElement);
+            toast.show();
+        });
+    </script>
+}
+
+@* mensaje toast de error *@
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="toast-container position-fixed top-0 end-0 p-3" style="z-index: 1050;">
+        <div class="toast align-items-center text-white bg-danger border-0" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="d-flex">
+                <div class="toast-body">
+                    @TempData["ErrorMessage"]
+                </div>
+                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            var toastElement = document.querySelector('.toast.bg-danger');
+            var toast = new bootstrap.Toast(toastElement);
+            toast.show();
+        });
+    </script>
+}
+<h2 class="mb-4">Lista de Afiliados</h2>
+
+<p>
+    <button class="btn btn-success" onclick="window.location.href='@Url.Action("ImportarDesdeExcel")'">
+        Importar afiliados desde Excel
+    </button>
+    |
+    <button class="btn btn-primary" onclick="window.location.href='@Url.Action("CargarManualmente")'">
+        Cargar afiliado manualmente
+    </button>
+</p>
+
+@* form de busqueda *@
+<div class="d-flex justify-content-end mb-4">
+    <form method="get" class="form-inline">
+        <div class="form-group me-2">
+            <input type="text" name="nombre" value="@ViewData["nombre"]" class="form-control" placeholder="Buscar por nombre" style="width: 200px;" />
+        </div>
+        <div class="form-group me-2">
+            <input type="text" name="apellido" value="@ViewData["apellido"]" class="form-control" placeholder="Buscar por apellido" style="width: 200px;" />
+        </div>
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary">Buscar</button>
+        </div>
+    </form>
+</div>
+
+
+@* tabla de tickets *@
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nombres</th>
+            <th>Apellido</th>
+            <th>DNI</th>
+            <th>FechaNacimiento</th>
+            <th>Foto</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var afiliado in Model)
+        {
+            <tr>
+                <td>@afiliado.Id</td>
+                <td>@afiliado.Nombres</td>
+                <td>@afiliado.Apellido</td>
+                <td>@afiliado.DNI</td>
+                <td>@afiliado.FechaNacimiento.ToString("dd/MM/yyyy")</td>
+                <td>
+                    @if (!string.IsNullOrEmpty(afiliado.Foto))
+                    {
+                        <img src="~/images/@afiliado.Foto" alt="Foto de @afiliado.Nombres" width="100" height="100" />
+                    }
+                    else
+                    {
+                        <span>Sin foto</span>
+                    }
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@afiliado.Id">Editar</a> |
+                    <a asp-action="Delete" asp-route-id="@afiliado.Id">Eliminar</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@* controles de paginacion *@
+<section class="mt-5">
+    @if (ViewData["CurrentPage"] != null && ViewData["TotalPages"] != null)
+    {
+        var currentPage = (int)ViewData["CurrentPage"];
+        var totalPages = (int)ViewData["TotalPages"];
+
+        <nav aria-label="Paginación">
+            <ul class="pagination justify-content-center">
+                @if (currentPage > 1)
+                {
+                    <li class="page-item">
+                        <a class="page-link" asp-action="Index" asp-route-page="@(currentPage - 1)">Anterior</a>
+                    </li>
+                }
+
+                @for (var i = 1; i <= totalPages; i++)
+                {
+                    <li class="page-item @(currentPage == i ? "active" : "")">
+                        <a class="page-link" asp-action="Index" asp-route-page="@i">@i</a>
+                    </li>
+                }
+
+                @if (currentPage < totalPages)
+                {
+                    <li class="page-item">
+                        <a class="page-link" asp-action="Index" asp-route-page="@(currentPage + 1)">Siguiente</a>
+                    </li>
+                }
+            </ul>
+        </nav>
+    }
+</section>

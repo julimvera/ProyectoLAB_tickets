@@ -1,0 +1,32 @@
+﻿@model WebApp_Tickets.Models.Afiliado
+@{
+    ViewData["Title"] = "Importar Afiliados desde Excel";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success">  //mensaje de exito
+        @TempData["SuccessMessage"]
+    </div>
+}
+
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger">  //mensaje de error 
+        @TempData["ErrorMessage"]
+    </div>
+}
+
+
+
+<form asp-action="ImportarDesdeExcel" method="post" enctype="multipart/form-data">
+    <div class="form-group">
+        <label for="archivoExcel">Seleccione el archivo de Excel:</label>
+        <input type="file" name="archivoExcel" class="form-control" required />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Importar</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+</form>

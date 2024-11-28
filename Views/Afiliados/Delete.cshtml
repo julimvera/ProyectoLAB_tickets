@@ -1,0 +1,12 @@
+﻿@model WebApp_Tickets.Models.Afiliado
+
+@{
+    ViewData["Title"] = "Eliminar Afiliado";
+}
+
+<h2>¿Estás seguro de que quieres eliminar a @Model.Apellido, @Model.Nombres y todos sus tickets?</h2>
+
+<form method="post">
+    <button type="submit" class="btn btn-danger">Eliminar</button>
+    <a href="@Url.Action("Index", "Afiliados")" class="btn btn-secondary">Cancelar</a>
+</form>

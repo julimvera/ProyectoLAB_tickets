@@ -1,0 +1,19 @@
+﻿@model WebApp_Tickets.Models.Afiliado
+
+@{
+    ViewData["Title"] = "Detalles del Afiliado";
+}
+
+<h2>Detalles de @Model.Apellido, @Model.Nombres</h2>
+
+<div>
+    <strong>DNI:</strong> @Model.DNI
+</div>
+<div>
+    <strong>Fecha de Nacimiento:</strong> @Model.FechaNacimiento.ToString("dd/MM/yyyy")
+</div>
+<div>
+    <strong>Foto:</strong> <img src="@Model.Foto" alt="Foto del Afiliado" />
+</div>
+
+<a href="@Url.Action("Index", "Afiliados")">Volver a la lista de afiliados</a>

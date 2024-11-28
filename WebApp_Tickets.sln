@@ -1,0 +1,30 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.11.35222.181
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApp_Tickets", "WebApp_Tickets.csproj", "{59E8133A-F32E-4995-B296-5C6CAA434061}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Elementos de la solución", "Elementos de la solución", "{EC7E126E-77CC-4697-8CEC-171B2AE87874}"
+	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{59E8133A-F32E-4995-B296-5C6CAA434061}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{59E8133A-F32E-4995-B296-5C6CAA434061}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{59E8133A-F32E-4995-B296-5C6CAA434061}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{59E8133A-F32E-4995-B296-5C6CAA434061}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {DAFB50A8-CA10-4C39-B036-9050442DB6FD}
+	EndGlobalSection
+EndGlobal
